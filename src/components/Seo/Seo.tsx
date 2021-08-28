@@ -8,7 +8,7 @@ type SeoProps = {
   helmetProps?: HelmetProps
 }
 
-const defaultDescription = 'A pomodoro timer web application. '
+const defaultDescription = 'A pomodoro timer web application.'
 
 function Seo({
   title,
