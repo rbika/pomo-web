@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import * as S from './Header.styles'
 import c from '../../utils/constants'
-import tomatoImg from '../../images/tomato-icon.png'
+import tomatoImg from '../../images/tomato.svg'
 
 type HeaderProps = {
   children: React.ReactNode
