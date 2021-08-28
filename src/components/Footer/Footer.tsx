@@ -14,7 +14,10 @@ export default function Footer(): JSX.Element {
 
       <S.LinksList>
         <S.ListItem>
-          <S.FooterLink href="https://github.com/rbika/pomodoro-web" target="_blank">
+          <S.FooterLink
+            href="https://github.com/rbika/pomo-web"
+            target="_blank"
+          >
             Github
           </S.FooterLink>
         </S.ListItem>

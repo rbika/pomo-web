@@ -72,8 +72,8 @@ function PomodoroTimer(): JSX.Element {
 
       <S.TimerTitle>{state.timerTitle}</S.TimerTitle>
 
-      <div>
-        <strong>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <strong style={{ width: '40px', textAlign: 'center' }}>
           {state.pomodorosCount} / {c.pomodoroCicles}
         </strong>
 

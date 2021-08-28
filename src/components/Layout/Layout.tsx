@@ -10,6 +10,7 @@ import { EThemes } from '../../types/EThemes'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { themes } from '../../themes'
 import ThemeToggler from '../ThemeToggler'
+import { Grid } from 'react-flexbox-grid'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -28,10 +29,16 @@ function Layout({ children }: LayoutProps): JSX.Element {
         <Header>
           <ThemeToggler theme={theme} onThemeChange={handleThemeChange} />
         </Header>
-        <div style={{ maxWidth: c.maxContainerWidth, margin: '3rem auto' }}>
-          {children}
-          <Footer />
-        </div>
+        <Grid
+          style={{
+            maxWidth: c.maxContainerWidth,
+          }}
+        >
+          <div style={{ margin: '3rem auto' }}>
+            {children}
+            <Footer />
+          </div>
+        </Grid>
       </S.Layout>
     </ThemeProvider>
   )

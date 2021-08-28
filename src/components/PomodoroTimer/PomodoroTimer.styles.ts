@@ -22,10 +22,11 @@ export const TimerSelectorButton = styled.button<{
   border: 0,
   background: 'transparent',
   borderRadius: '0.5rem',
-  padding: '0.25rem 1rem',
+  padding: '0.25rem 0.5rem',
   fontWeight: active ? 500 : 400,
   color: active ? theme.pomodoroRed : theme.textSecondary,
   transition: 'color 0.2s',
+  cursor: 'pointer',
 
   '&:hover': {
     color: active ? theme.pomodoroRed : theme.textPrimary,
@@ -59,6 +60,7 @@ export const TimerButton = styled.button(({ theme }) => ({
   paddingBottom: '0.125rem',
   transition: 'all 0.5s',
   margin: '0 3rem',
+  cursor: 'pointer',
 
   '&:hover': {
     background: '#c62828',
@@ -75,6 +77,10 @@ export const ResetButton = styled.button(({ theme }) => ({
   fontWeight: 700,
   color: theme.textSecondary,
   transition: 'all 0.2s',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer',
 
   '&:hover': {
     color: theme.textPrimary,

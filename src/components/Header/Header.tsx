@@ -1,8 +1,9 @@
 import * as React from 'react'
 
 import * as S from './Header.styles'
-import c from '../../utils/constants'
 import tomatoImg from '../../images/tomato.svg'
+import { Grid } from 'react-flexbox-grid'
+import c from '../../utils/constants'
 
 type HeaderProps = {
   children: React.ReactNode
@@ -11,7 +12,7 @@ type HeaderProps = {
 function Header({ children, ...divProps }: HeaderProps): JSX.Element {
   return (
     <S.Header {...divProps}>
-      <div
+      <Grid
         style={{
           maxWidth: c.maxContainerWidth,
           justifyContent: 'space-between',
@@ -31,7 +32,7 @@ function Header({ children, ...divProps }: HeaderProps): JSX.Element {
         </S.Logo>
 
         {children}
-      </div>
+      </Grid>
     </S.Header>
   )
 }

@@ -13,6 +13,7 @@ export const Footer = styled.footer(({ theme }) => ({
 export const LinksList = styled.ul({
   listStyle: 'none',
   display: 'flex',
+  margin: 0,
 })
 
 export const ListItem = styled.li({
