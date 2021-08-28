@@ -34,7 +34,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
             maxWidth: c.maxContainerWidth,
           }}
         >
-          <div style={{ margin: '3rem auto' }}>
+          <div style={{ margin: '3rem auto 0' }}>
             {children}
             <Footer />
           </div>
