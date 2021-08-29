@@ -18,9 +18,15 @@ const ThemeToggler = ({
   const nextTheme = theme === EThemes.light ? EThemes.dark : EThemes.light
 
   return (
-    <S.ThemeToggler onClick={() => onThemeChange(nextTheme)} {...divProps}>
-      {theme === EThemes.dark && <IoSunny size="100%" />}
-      {theme === EThemes.light && <IoMoon size="100%" />}
+    <S.ThemeToggler
+      data-testid="icon-container"
+      onClick={() => onThemeChange(nextTheme)}
+      {...divProps}
+    >
+      {theme === EThemes.dark && <IoSunny data-testid="sun-icon" size="100%" />}
+      {theme === EThemes.light && (
+        <IoMoon data-testid="moon-icon" size="100%" />
+      )}
     </S.ThemeToggler>
   )
 }
