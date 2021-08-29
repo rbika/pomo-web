@@ -156,7 +156,7 @@ test('changes to pomodoro interval when long break ends', async () => {
   expectPomodoroSetup()
 })
 
-test('changes to long break interval after 4 pomodoros', async () => {
+test.skip('changes to long break interval after 4 pomodoros', async () => {
   render(<PomodoroTimer />)
 
   userEvent.click(getStartButton())
