@@ -4,7 +4,7 @@ import About from './About'
 
 const getTitle = () => screen.getByText(/^pomodoro technique/i)
 const getAboutText = () => screen.getByText(/the pomodoro .* student - /i)
-const getLink = () => screen.getByText(/wikipedia/i)
+const getWikiLink = () => screen.getByText(/wikipedia/i)
 
 test('renders without errors', () => {
   render(<About />)
@@ -12,8 +12,8 @@ test('renders without errors', () => {
   expect(getTitle()).toBeInTheDocument()
   expect(getAboutText()).toBeInTheDocument()
 
-  expect(getLink()).toHaveAttribute('target', '_blank')
-  expect(getLink()).toHaveAttribute(
+  expect(getWikiLink()).toHaveAttribute('target', '_blank')
+  expect(getWikiLink()).toHaveAttribute(
     'href',
     'https://en.wikipedia.org/wiki/Pomodoro_Technique'
   )
