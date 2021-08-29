@@ -5,15 +5,14 @@ import { ThemeProvider } from '@emotion/react'
 import Footer from '../Footer'
 import Header from '../Header'
 import * as S from './Layout.styles'
-import c from '../../utils/constants'
 import { EThemes } from '../../types/EThemes'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { themes } from '../../themes'
 import ThemeToggler from '../ThemeToggler'
-import { Grid } from 'react-flexbox-grid'
+import c from '../../utils/constants'
 
 type LayoutProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 function Layout({ children }: LayoutProps): JSX.Element {
@@ -26,19 +25,13 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return (
     <ThemeProvider theme={themes[theme]}>
       <S.Layout>
-        <Header>
+        <Header data-testid="page-header">
           <ThemeToggler theme={theme} onThemeChange={handleThemeChange} />
         </Header>
-        <Grid
-          style={{
-            maxWidth: c.maxContainerWidth,
-          }}
-        >
-          <div style={{ margin: '3rem auto 0' }}>
-            {children}
-            <Footer />
-          </div>
-        </Grid>
+        <S.LayoutGrid>
+          <S.PageContent>{children}</S.PageContent>
+          <Footer data-testid="page-footer" />
+        </S.LayoutGrid>
       </S.Layout>
     </ThemeProvider>
   )

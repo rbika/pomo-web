@@ -2,9 +2,11 @@ import * as React from 'react'
 
 import * as S from './Footer.styles'
 
-export default function Footer(): JSX.Element {
+export default function Footer(
+  props: React.HTMLAttributes<HTMLDivElement>
+): JSX.Element {
   return (
-    <S.Footer>
+    <S.Footer {...props}>
       <div>
         Made with <S.HeartEmoji>❤️</S.HeartEmoji> by{' '}
         <S.FooterLink href="https://rbika.com" target="_blank">
