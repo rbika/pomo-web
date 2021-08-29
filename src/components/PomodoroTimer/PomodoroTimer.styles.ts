@@ -67,6 +67,11 @@ export const TimerButton = styled.button(({ theme }) => ({
   },
 }))
 
+export const TimerControls = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+})
+
 export const ResetButton = styled.button(({ theme }) => ({
   backgroundColor: 'transparent',
   borderRadius: '25px',
@@ -87,3 +92,8 @@ export const ResetButton = styled.button(({ theme }) => ({
     backgroundColor: theme.bgSecondary,
   },
 }))
+
+export const PomodorosCount = styled.strong({
+  width: '40px',
+  textAlign: 'center',
+})

@@ -67,23 +67,23 @@ function PomodoroTimer(): JSX.Element {
         </S.TimerSelectorButton>
       </S.TimerSelector>
 
-      <S.Timer>{formatTime(state.time)}</S.Timer>
+      <S.Timer data-testid="timer">{formatTime(state.time)}</S.Timer>
 
-      <S.TimerTitle>{state.timerTitle}</S.TimerTitle>
+      <S.TimerTitle data-testid="timer-title">{state.timerTitle}</S.TimerTitle>
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <strong style={{ width: '40px', textAlign: 'center' }}>
+      <S.TimerControls>
+        <S.PomodorosCount data-testid="pomodoro-counter">
           {state.pomodorosCount} / {c.pomodoroCicles}
-        </strong>
+        </S.PomodorosCount>
 
         <S.TimerButton onClick={handleToggleTimer}>
           {state.isRunning ? 'Pause' : 'Start'}
         </S.TimerButton>
 
-        <S.ResetButton onClick={handleResetClick}>
+        <S.ResetButton data-testid="reset-button" onClick={handleResetClick}>
           <IoMdRefresh />
         </S.ResetButton>
-      </div>
+      </S.TimerControls>
 
       {state.notificationMessage && (
         <Notification
