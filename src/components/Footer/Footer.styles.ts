@@ -10,6 +10,10 @@ export const Footer = styled.footer(({ theme }) => ({
   justifyContent: 'space-between',
 }))
 
+export const HeartEmoji = styled.span({
+  fontSize: '0.75rem',
+})
+
 export const LinksList = styled.ul({
   listStyle: 'none',
   display: 'flex',

@@ -6,7 +6,7 @@ export default function Footer(): JSX.Element {
   return (
     <S.Footer>
       <div>
-        Made with <span style={{ fontSize: '0.75rem' }}>❤️</span> by{' '}
+        Made with <S.HeartEmoji>❤️</S.HeartEmoji> by{' '}
         <S.FooterLink href="https://rbika.com" target="_blank">
           rbika
         </S.FooterLink>
@@ -16,13 +16,18 @@ export default function Footer(): JSX.Element {
         <S.ListItem>
           <S.FooterLink
             href="https://github.com/rbika/pomo-web"
+            rel="noreferrer"
             target="_blank"
           >
             Github
           </S.FooterLink>
         </S.ListItem>
         <S.ListItem>
-          <S.FooterLink href="https://twitter.com/rbika" target="_blank">
+          <S.FooterLink
+            href="https://twitter.com/rbika"
+            rel="noreferrer"
+            target="_blank"
+          >
             Contact
           </S.FooterLink>
         </S.ListItem>
