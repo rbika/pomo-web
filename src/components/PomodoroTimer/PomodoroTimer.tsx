@@ -3,12 +3,12 @@ import { useInterval } from '../../hooks/useInterval'
 import { ETimerModes } from '../../types/ETimerModes'
 import c from '../../utils/constants'
 import { formatTime } from '../../utils/formatTime'
-import Seo from '../Seo'
 import { pomodoroTimerReducer, initialState } from './PomodoroTimer.reducer'
 import Notification from 'react-web-notification'
 import { IoMdRefresh } from 'react-icons/io'
 
 import * as S from './PomodoroTimer.styles'
+import { Helmet } from 'react-helmet'
 
 function PomodoroTimer(): JSX.Element {
   const [state, dispatch] = React.useReducer(pomodoroTimerReducer, initialState)
@@ -40,10 +40,9 @@ function PomodoroTimer(): JSX.Element {
 
   return (
     <S.PomodoroTimer>
-      <Seo
-        title={`${formatTime(state.time)} ${state.timerTitle}`}
-        helmetProps={{ defer: false }}
-      />
+      <Helmet defer={false}>
+        <title>{`${formatTime(state.time)} ${state.timerTitle}`}</title>
+      </Helmet>
 
       <S.TimerSelector>
         <S.TimerSelectorButton
