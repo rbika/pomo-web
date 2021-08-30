@@ -1,4 +1,4 @@
-# [Pomo Web](pomo-web.netlify.app)
+# [Pomo Web](https://pomo-web.netlify.app/)
 
 A pomodoro web app built with React.
 
