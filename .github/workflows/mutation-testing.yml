@@ -3,6 +3,7 @@ name: mutation testing
 on:
   push:
     branches:
+      - main
       - dev
 
 jobs:
