@@ -18,15 +18,11 @@ type LayoutProps = {
 function Layout({ children }: LayoutProps): JSX.Element {
   const [theme, setTheme] = useLocalStorage(c.localStorageTheme, EThemes.light)
 
-  function handleThemeChange(nextTheme: EThemes) {
-    setTheme(nextTheme)
-  }
-
   return (
     <ThemeProvider theme={themes[theme]}>
       <S.Layout>
         <Header data-testid="page-header">
-          <ThemeToggler theme={theme} onThemeChange={handleThemeChange} />
+          <ThemeToggler theme={theme} onThemeChange={setTheme} />
         </Header>
         <S.LayoutGrid>
           <S.PageContent>{children}</S.PageContent>
