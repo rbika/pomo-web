@@ -10,8 +10,17 @@ import { IoMdRefresh } from 'react-icons/io'
 import * as S from './PomodoroTimer.styles'
 import { Helmet } from 'react-helmet'
 
-function PomodoroTimer(): JSX.Element {
-  const [state, dispatch] = React.useReducer(pomodoroTimerReducer, initialState)
+type PomodoroTimerProps = {
+  pomodorosCount?: 0 | 1 | 2 | 3 | 4
+}
+
+function PomodoroTimer({
+  pomodorosCount = 0,
+}: PomodoroTimerProps): JSX.Element {
+  const [state, dispatch] = React.useReducer(pomodoroTimerReducer, {
+    ...initialState,
+    pomodorosCount,
+  })
 
   useInterval(
     () => {

@@ -33,6 +33,7 @@ const expectPomodoroSetup = () => {
   expect(getSelectorLongBreak()).toHaveStyle({ fontWeight: 400 })
   expect(getTimer()).toHaveTextContent('25:00')
   expect(getTimerTitle()).toHaveTextContent('Focus time')
+  expect(getStartButton()).toBeInTheDocument()
 }
 
 const expectShortBreakSetup = () => {
@@ -41,6 +42,7 @@ const expectShortBreakSetup = () => {
   expect(getSelectorLongBreak()).toHaveStyle({ fontWeight: 400 })
   expect(getTimer()).toHaveTextContent('05:00')
   expect(getTimerTitle()).toHaveTextContent('Break time')
+  expect(getStartButton()).toBeInTheDocument()
 }
 
 const expectLongBreakSetup = () => {
@@ -49,6 +51,7 @@ const expectLongBreakSetup = () => {
   expect(getSelectorLongBreak()).toHaveStyle({ fontWeight: 500 })
   expect(getTimer()).toHaveTextContent('15:00')
   expect(getTimerTitle()).toHaveTextContent('Break time')
+  expect(getStartButton()).toBeInTheDocument()
 }
 
 test('renders without errors', () => {
@@ -147,7 +150,7 @@ test('changes to pomodoro interval when short break ends', async () => {
 })
 
 test('changes to pomodoro interval when long break ends', async () => {
-  render(<PomodoroTimer />)
+  render(<PomodoroTimer pomodorosCount={4} />)
   userEvent.click(getSelectorLongBreak())
   userEvent.click(getStartButton())
   await waitFor(() => jest.advanceTimersByTime(900000)) // 15 minutes
@@ -156,21 +159,9 @@ test('changes to pomodoro interval when long break ends', async () => {
   expectPomodoroSetup()
 })
 
-test.skip('changes to long break interval after 4 pomodoros', async () => {
-  render(<PomodoroTimer />)
+test('changes to long break interval after 4 pomodoros', async () => {
+  render(<PomodoroTimer pomodorosCount={3} />)
 
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
-
-  userEvent.click(getSelectorPomodoro())
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
-
-  userEvent.click(getSelectorPomodoro())
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
-
-  userEvent.click(getSelectorPomodoro())
   userEvent.click(getStartButton())
   await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
 
