@@ -20,5 +20,5 @@ export default {
   maxContainerWidth: 720,
 
   // Local storage keys
-  localStorageTheme: 'pmdr-theme',
+  localStorageTheme: 'pw-theme',
 }
