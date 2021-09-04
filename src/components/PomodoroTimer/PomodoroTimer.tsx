@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { useInterval } from '../../hooks/useInterval'
+import { useInterval } from 'react-use'
 import { ETimerModes } from '../../types/ETimerModes'
 import c from '../../utils/constants'
 import { formatTime } from '../../utils/formatTime'
 import { pomodoroTimerReducer, initialState } from './PomodoroTimer.reducer'
-import Notification from 'react-web-notification'
 import { IoMdRefresh } from 'react-icons/io'
+import Push from 'push.js'
 
 import * as S from './PomodoroTimer.styles'
 import { Helmet } from 'react-helmet'
@@ -21,6 +21,17 @@ function PomodoroTimer({
     ...initialState,
     pomodorosCount,
   })
+
+  React.useEffect(() => {
+    if (state.notificationMessage) {
+      Push.create(state.notificationMessage, {
+        onClick: function () {
+          window.focus()
+        },
+      })
+      dispatch({ type: 'clearNotification' })
+    }
+  }, [state.notificationMessage])
 
   useInterval(
     () => {
@@ -93,13 +104,6 @@ function PomodoroTimer({
           <IoMdRefresh />
         </S.ResetButton>
       </S.TimerControls>
-
-      {state.notificationMessage && (
-        <Notification
-          title={state.notificationMessage}
-          onShow={() => dispatch({ type: 'clearNotification' })}
-        />
-      )}
     </S.PomodoroTimer>
   )
 }
