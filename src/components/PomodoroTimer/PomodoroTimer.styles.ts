@@ -20,7 +20,7 @@ export const TimerSelectorButton = styled.button<{
 }>(({ active, theme }) => ({
   margin: '0 0.5rem',
   border: 0,
-  fontSize: 0.9375,
+  fontSize: '0.9375rem',
   background: 'transparent',
   borderRadius: '0.5rem',
   padding: '0.25rem 0.5rem',
