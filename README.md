@@ -9,22 +9,7 @@ A pomodoro web app built with React.
 
 NodeJS v14 or higher is required.
 
-1. Clone the repository.
-
-   ```
-   git clone git@github.com:rbika/pomo-web.git
-   ```
-
-2. Install the dependencies:
-
-   ```
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```
-   npm start
-   ```
-
-4. Go to http://localhost:3000/.
+1. Clone the repository
+2. Install the dependencies with `npm install`
+3. Run `npm start`
+4. Go to http://localhost:3000/
