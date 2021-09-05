@@ -10,6 +10,7 @@ import { useLocalStorage } from 'react-use'
 import { themes } from '../../themes'
 import ThemeToggler from '../ThemeToggler'
 import c from '../../utils/constants'
+import Push from 'push.js'
 
 type LayoutProps = {
   children?: React.ReactNode
@@ -21,6 +22,12 @@ function Layout({ children }: LayoutProps): JSX.Element {
     EThemes.light,
     { raw: true }
   )
+
+  React.useEffect(() => {
+    if (!Push.Permission.has()) {
+      Push.Permission.request()
+    }
+  }, [])
 
   return (
     <ThemeProvider theme={themes[theme as EThemes]}>
