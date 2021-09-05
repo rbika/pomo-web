@@ -10,6 +10,8 @@ export const themes: { [key: string]: Theme } = {
     linkHover: '#757575',
     border: '#e0e0e0',
     pomodoroRed: '#e53935',
+    alertWarnBg: '#fff3cd',
+    alertWarnBorder: '#efe472',
   },
   dark: {
     textPrimary: '#eee',
@@ -20,5 +22,7 @@ export const themes: { [key: string]: Theme } = {
     linkHover: '#bdbdbd',
     border: '#8b949e',
     pomodoroRed: '#e53935',
+    alertWarnBg: '#bb800926',
+    alertWarnBorder: '#bb800966',
   },
 }
