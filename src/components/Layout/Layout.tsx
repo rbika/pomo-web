@@ -10,6 +10,8 @@ import { useLocalStorage } from 'react-use'
 import { themes } from '../../themes'
 import ThemeToggler from '../ThemeToggler'
 import c from '../../utils/constants'
+import Push from 'push.js'
+import Alert from '../Alert'
 
 type LayoutProps = {
   children?: React.ReactNode
@@ -22,6 +24,14 @@ function Layout({ children }: LayoutProps): JSX.Element {
     { raw: true }
   )
 
+  const [notificationsDenied, setNotificationsDenied] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!Push.Permission.has()) {
+      Push.Permission.request(undefined, () => setNotificationsDenied(true))
+    }
+  }, [])
+
   return (
     <ThemeProvider theme={themes[theme as EThemes]}>
       <S.Layout>
@@ -29,6 +39,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
           <ThemeToggler theme={theme as EThemes} onThemeChange={setTheme} />
         </Header>
         <S.LayoutGrid>
+          {notificationsDenied && <Alert>{c.notificationsDenied}</Alert>}
           <S.PageContent>{children}</S.PageContent>
           <Footer data-testid="page-footer" />
         </S.LayoutGrid>

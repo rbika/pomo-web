@@ -10,5 +10,7 @@ declare module '@emotion/react' {
     linkHover: string
     border: string
     pomodoroRed: string
+    alertWarnBg: string
+    alertWarnBorder: string
   }
 }
