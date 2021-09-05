@@ -10,8 +10,9 @@ export const Layout = styled.div(({ theme }) => ({
 
 export const LayoutGrid = styled(Grid)({
   maxWidth: c.maxContainerWidth,
+  paddingTop: '1.5rem',
 })
 
 export const PageContent = styled.div({
-  margin: '3rem auto 0',
+  paddingTop: '1.5rem',
 })

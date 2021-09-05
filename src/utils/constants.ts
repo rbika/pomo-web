@@ -12,6 +12,10 @@ export default {
   shortBreakNorification: '☕️ Time for a break!',
   longBreakNorification: '😎 Time for a break!',
 
+  // Alert texts
+  notificationsDenied:
+    'Browser notifications blocked. Please, enable notifications to be notified when each interval ends.',
+
   // Timer texts
   pomodoroText: 'Focus time',
   breakText: 'Break time',
