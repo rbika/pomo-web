@@ -2,6 +2,8 @@ import * as React from 'react'
 import { screen, render } from '@testing-library/react'
 import Footer from './Footer'
 
+// Queries
+
 const getMadeByText = () =>
   screen.getByText((_, node) => {
     return node?.textContent === 'Made with ❤️ by rbika'
@@ -10,20 +12,27 @@ const getPersonalPageLink = () => screen.getByText(/rbika/i)
 const getGithubLink = () => screen.getByText(/github/i)
 const getContactLink = () => screen.getByText(/contact/i)
 
-test('renders without errors', () => {
-  render(<Footer />)
+// Tests
 
-  expect(getMadeByText()).toBeInTheDocument()
+describe('<Footer />', () => {
+  test('renders without errors', () => {
+    render(<Footer />)
 
-  expect(getPersonalPageLink()).toHaveAttribute('target', '_blank')
-  expect(getPersonalPageLink()).toHaveAttribute('href', 'https://rbika.com')
+    expect(getMadeByText()).toBeInTheDocument()
 
-  expect(getGithubLink()).toHaveAttribute('target', '_blank')
-  expect(getGithubLink()).toHaveAttribute(
-    'href',
-    'https://github.com/rbika/pomo-web'
-  )
+    expect(getPersonalPageLink()).toHaveAttribute('target', '_blank')
+    expect(getPersonalPageLink()).toHaveAttribute('href', 'https://rbika.com')
 
-  expect(getContactLink()).toHaveAttribute('target', '_blank')
-  expect(getContactLink()).toHaveAttribute('href', 'https://twitter.com/rbika')
+    expect(getGithubLink()).toHaveAttribute('target', '_blank')
+    expect(getGithubLink()).toHaveAttribute(
+      'href',
+      'https://github.com/rbika/pomo-web'
+    )
+
+    expect(getContactLink()).toHaveAttribute('target', '_blank')
+    expect(getContactLink()).toHaveAttribute(
+      'href',
+      'https://twitter.com/rbika'
+    )
+  })
 })

@@ -12,6 +12,8 @@ afterEach(() => {
   jest.useRealTimers()
 })
 
+// Queries
+
 const getSelectorPomodoro = () =>
   screen.getByRole('button', { name: /pomodoro/i })
 const getSelectorShortBreak = () =>
@@ -54,117 +56,121 @@ const expectLongBreakSetup = () => {
   expect(getStartButton()).toBeInTheDocument()
 }
 
-test('renders without errors', () => {
-  render(<PomodoroTimer />)
+// Tests
 
-  expect(getSelectorPomodoro()).toBeInTheDocument()
-  expect(getSelectorShortBreak()).toBeInTheDocument()
-  expect(getSelectorLongBreak()).toBeInTheDocument()
-  expect(getStartButton()).toBeInTheDocument()
-  expect(getResetButton()).toBeInTheDocument()
-  expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
-  expectPomodoroSetup()
-})
+describe('<Layout />', () => {
+  test('renders without errors', () => {
+    render(<PomodoroTimer />)
 
-test('setups short break interval when button is clicked', () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getSelectorShortBreak())
+    expect(getSelectorPomodoro()).toBeInTheDocument()
+    expect(getSelectorShortBreak()).toBeInTheDocument()
+    expect(getSelectorLongBreak()).toBeInTheDocument()
+    expect(getStartButton()).toBeInTheDocument()
+    expect(getResetButton()).toBeInTheDocument()
+    expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
+    expectPomodoroSetup()
+  })
 
-  expectShortBreakSetup()
-})
+  test('setups short break interval when button is clicked', () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getSelectorShortBreak())
 
-test('setups long break interval when button is clicked', () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getSelectorLongBreak())
+    expectShortBreakSetup()
+  })
 
-  expectLongBreakSetup()
-})
+  test('setups long break interval when button is clicked', () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getSelectorLongBreak())
 
-test('setups pomodoro interval when button is clicked', () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getSelectorLongBreak())
-  userEvent.click(getSelectorPomodoro())
+    expectLongBreakSetup()
+  })
 
-  expectPomodoroSetup()
-})
+  test('setups pomodoro interval when button is clicked', () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getSelectorLongBreak())
+    userEvent.click(getSelectorPomodoro())
 
-test('switches start and pause buttons', () => {
-  render(<PomodoroTimer />)
+    expectPomodoroSetup()
+  })
 
-  userEvent.click(getStartButton())
-  expect(getPauseButton()).toBeInTheDocument()
-  expect(queryStartButton()).not.toBeInTheDocument()
+  test('switches start and pause buttons', () => {
+    render(<PomodoroTimer />)
 
-  userEvent.click(getPauseButton())
-  expect(getStartButton()).toBeInTheDocument()
-  expect(queryPauseButton()).not.toBeInTheDocument()
-})
+    userEvent.click(getStartButton())
+    expect(getPauseButton()).toBeInTheDocument()
+    expect(queryStartButton()).not.toBeInTheDocument()
 
-test('starts timer when button is clicked', async () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(5000))
+    userEvent.click(getPauseButton())
+    expect(getStartButton()).toBeInTheDocument()
+    expect(queryPauseButton()).not.toBeInTheDocument()
+  })
 
-  expect(getTimer()).toHaveTextContent('24:55')
-})
+  test('starts timer when button is clicked', async () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(5000))
 
-test('pauses timer when button is clicked', async () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(5000))
+    expect(getTimer()).toHaveTextContent('24:55')
+  })
 
-  userEvent.click(getPauseButton())
-  await waitFor(() => jest.advanceTimersByTime(5000))
+  test('pauses timer when button is clicked', async () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(5000))
 
-  expect(getTimer()).toHaveTextContent('24:55')
-})
+    userEvent.click(getPauseButton())
+    await waitFor(() => jest.advanceTimersByTime(5000))
 
-test('resets timer when button is clicked', async () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(5000))
+    expect(getTimer()).toHaveTextContent('24:55')
+  })
 
-  userEvent.click(getResetButton())
-  await waitFor(() => jest.advanceTimersByTime(5000))
+  test('resets timer when button is clicked', async () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(5000))
 
-  expectPomodoroSetup()
-  expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
-})
+    userEvent.click(getResetButton())
+    await waitFor(() => jest.advanceTimersByTime(5000))
 
-test('changes to short break interval when pomodoro ends', async () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
+    expectPomodoroSetup()
+    expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
+  })
 
-  expectShortBreakSetup()
-  expect(getPomodoroCounter()).toHaveTextContent('1 / 4')
-})
+  test('changes to short break interval when pomodoro ends', async () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
 
-test('changes to pomodoro interval when short break ends', async () => {
-  render(<PomodoroTimer />)
-  userEvent.click(getSelectorShortBreak())
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(300000)) // 5 minutes
+    expectShortBreakSetup()
+    expect(getPomodoroCounter()).toHaveTextContent('1 / 4')
+  })
 
-  expectPomodoroSetup()
-})
+  test('changes to pomodoro interval when short break ends', async () => {
+    render(<PomodoroTimer />)
+    userEvent.click(getSelectorShortBreak())
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(300000)) // 5 minutes
 
-test('changes to pomodoro interval when long break ends', async () => {
-  render(<PomodoroTimer pomodorosCount={4} />)
-  userEvent.click(getSelectorLongBreak())
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(900000)) // 15 minutes
-  expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
+    expectPomodoroSetup()
+  })
 
-  expectPomodoroSetup()
-})
+  test('changes to pomodoro interval when long break ends', async () => {
+    render(<PomodoroTimer pomodorosCount={4} />)
+    userEvent.click(getSelectorLongBreak())
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(900000)) // 15 minutes
+    expect(getPomodoroCounter()).toHaveTextContent('0 / 4')
 
-test('changes to long break interval after 4 pomodoros', async () => {
-  render(<PomodoroTimer pomodorosCount={3} />)
+    expectPomodoroSetup()
+  })
 
-  userEvent.click(getStartButton())
-  await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
+  test('changes to long break interval after 4 pomodoros', async () => {
+    render(<PomodoroTimer pomodorosCount={3} />)
 
-  expectLongBreakSetup()
-  expect(getPomodoroCounter()).toHaveTextContent('4 / 4')
+    userEvent.click(getStartButton())
+    await waitFor(() => jest.advanceTimersByTime(1500000)) // 25 minutes
+
+    expectLongBreakSetup()
+    expect(getPomodoroCounter()).toHaveTextContent('4 / 4')
+  })
 })
