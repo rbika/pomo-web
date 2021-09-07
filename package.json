@@ -6,6 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "CI=true npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore ./src",
     "stryker": "stryker run"
